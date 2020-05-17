@@ -3,8 +3,12 @@ import { parseISO } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import ensureAuthentication from '../middlewares/ensureAuthentication';
 
 const appointmentsRouter = Router();
+
+// Apply middleware for all routes
+appointmentsRouter.use(ensureAuthentication);
 
 appointmentsRouter.get('/', async (request, response) => {
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
