@@ -26,6 +26,7 @@ export default function ensureAuthentication(
 
     const { sub } = decoded as TokenPayload;
 
+    // A "tipagem" do request foi mudada em @types/express.d.ts
     request.user = {
       id: sub,
     };
